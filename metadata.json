@@ -1,0 +1,6 @@
+{
+  "name": "SignBridge AI",
+  "description": "An AI-powered sign language interpreter and learning platform focused on accessibility and real-time gesture recognition.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["Real-time Vision", "Sign Language Translation", "Interactive Learning", "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

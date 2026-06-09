@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and learning progress",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "totalPoints": { "type": "integer" },
+        "completedLessons": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "totalPoints"]
+    },
+    "Lesson": {
+      "title": "Lesson",
+      "description": "Sign language lesson metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string", "enum": ["Alphabet", "Numbers", "Family", "Greetings", "Daily"] },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "signImage": { "type": "string" },
+        "signVideo": { "type": "string" },
+        "order": { "type": "integer" }
+      },
+      "required": ["id", "category", "title"]
+    },
+    "UserProgress": {
+      "title": "UserProgress",
+      "description": "Detailed progress for a specific lesson",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "lessonId": { "type": "string" },
+        "score": { "type": "integer" },
+        "attempts": { "type": "integer" },
+        "completed": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "lessonId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": { "schema": "User", "description": "Global user profiles" },
+    "/lessons/{lessonId}": { "schema": "Lesson", "description": "Available learning content" },
+    "/users/{userId}/progress/{lessonId}": { "schema": "UserProgress", "description": "Specific lesson achievement data" }
+  }
+}
